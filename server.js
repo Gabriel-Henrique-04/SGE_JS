@@ -7,9 +7,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use('/api', routes);
 
-const isDev = process.env.NODE_ENV === 'development';
-
-sequelize.sync({ force: isDev }) // Usar force apenas em desenvolvimento
+sequelize.sync() 
   .then(() => {
     console.log('Conectado ao banco de dados');
     app.listen(process.env.PORT || 3000, () => {
